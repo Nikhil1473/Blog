@@ -10,8 +10,6 @@ export const Blogs = () => {
     return (
       <div>
         <Skeleton />
-        <Skeleton />
-        <Skeleton />
       </div>
     );
   }
