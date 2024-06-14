@@ -1,12 +1,12 @@
 import { ChangeEvent, useState } from "react";
-import { SignupInput } from "@nikhil_pradhan/medium-common"
+import { signupInput, SigninType } from "@nikhil_pradhan/medium-common"; // Ensure correct import
 import { Link, useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../config";
-import axios from "axios"; // Fix the import statement
+import axios from "axios";
+
 export const Auth = ({ type }: { type: "signup" | "signin" }) => {
     const navigate = useNavigate();
-    const [postInputs, setPostInputs] = useState<SignupInput>({
-        name: "",
+    const [postInputs, setPostInputs] = useState<SigninType>({ // Use correct type here
         email: "",
         password: ""
     });
@@ -40,23 +40,23 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
                     </div>
                     <div className="pt-8">
                         {type === 'signup' && (
-                            <LabelInput label="Name" placeholder="Nikhil Kumar ...." onChange={(e) => {
-                                setPostInputs(c => ({
+                            <LabelInput label="Name" placeholder="Your Name" onChange={(e) => {
+                                setPostInputs((c) => ({
                                     ...c,
                                     name: e.target.value
                                 }))
                             }} />
                         )}
-                        <LabelInput label= "Username" placeholder="123@gmail.com" onChange={(e) => {
-                            setPostInputs(c => ({
+                        <LabelInput label="Email" placeholder="Your Email" onChange={(e) => {
+                            setPostInputs((c) => ({
                                 ...c,
-                                email: e.target.value // Update the email field
+                                email: e.target.value
                             }))
                         }} />
-                        <LabelInput label="Password" type="password" placeholder="12345678" onChange={(e) => {
-                            setPostInputs(c => ({
+                        <LabelInput label="Password" type="password" placeholder="Your Password" onChange={(e) => {
+                            setPostInputs((c) => ({
                                 ...c,
-                                password: e.target.value // Update the password field
+                                password: e.target.value
                             }))
                         }} />
                         <button onClick={sendRequest} type="button" className="mt-8 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 w-96 font-medium rounded-lg text-sm p-3 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
